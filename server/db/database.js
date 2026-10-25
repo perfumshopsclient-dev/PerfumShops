@@ -13,7 +13,6 @@ if (!DATABASE_URL && !DB_NAME) {
 
 // Solo verifica el certificado si lo pides explícitamente
 const verificarCert = process.env.DB_SSL_REJECT_UNAUTHORIZED === 'true';
-console.log('DB SSL:', DB_SSL === 'true', '| verificar certificado:', verificarCert);
 
 const opciones = {
   dialect: 'postgres',

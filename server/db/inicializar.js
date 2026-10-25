@@ -26,10 +26,8 @@ try {
 
   const pendientes = await umzug.pending();
   for (const m of pendientes) await umzug.storage.logMigration({ name: m.name });
-
-  console.log(`Esquema creado. Migraciones marcadas como aplicadas: ${pendientes.map((m) => m.name).join(', ')}`);
 } catch (e) {
-  console.error('inicializar falló:', e.message);
+  console.error('inicializar falló');
   process.exitCode = 1;
 } finally {
   await sequelize.close();

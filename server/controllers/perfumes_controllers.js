@@ -111,7 +111,7 @@ export class PerfumeController {
       });
 
       // Se vuelve a leer con los acordes incluidos para responder igual que el GET.
-      console.log('Perfume creado:', id);
+      console.log('Perfume creado:');
       res.status(201).json(perfumeADTO(await obtener(this.perfumeModel, id)));
     } catch (e) {
       manejarError(e, res, next);

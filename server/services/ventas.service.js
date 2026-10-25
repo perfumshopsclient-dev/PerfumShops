@@ -130,7 +130,7 @@ export const totalesHistoricos = async () => {
     include: joinsFinalizados(),
     raw: true,
   });
-  console.log('DAtos de vetnas históricos: ',{ unidades: Number(fila.unidades), ingresos: dinero(fila.ingresos) })
+  console.log('Datos de ventas históricos: ',{ unidades: Number(fila.unidades), ingresos: dinero(fila.ingresos) })
   return { unidades: Number(fila.unidades), ingresos: dinero(fila.ingresos) };
 };
 

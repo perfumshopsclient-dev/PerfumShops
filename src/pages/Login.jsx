@@ -47,7 +47,6 @@ export default function Login() {
 
     const result = loginSchema.safeParse(Object.fromEntries(new FormData(e.currentTarget)));
     if (!result.success) {
-      console.log('Error: ', result.error)
       setError(result.error.issues[0].message);
       return;
     }

@@ -61,7 +61,6 @@ export class UsersController {
       return res.json(datosPublicos(user))
 
     } catch (error) {
-      console.log('Error al intentar hacer login: ', error)
       res.status(500).json({ message: 'Error en el servidor' });
     }
   } 

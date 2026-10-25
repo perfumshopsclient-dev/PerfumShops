@@ -18,8 +18,6 @@ export const getAcordes = async () => {
 }
 
 export const updatePerfume = async (perfumeId, formData) => {
-
-  console.log('Enviando datos al backend para actualizar perfume:', Object.fromEntries(formData));
   const response = await api.put(`/perfumes/${perfumeId}`, formData);
   return response.data;
 };
