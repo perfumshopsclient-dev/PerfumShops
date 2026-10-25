@@ -1,0 +1,61 @@
+/* Usa las variables de tu dashboard si existen; si no, estos valores por defecto */
+.ped {
+  --p-navy: var(--navy, #1b2a5c);
+  --p-gold: var(--gold, #c9a227);
+  --p-bg: var(--cream, #f4f0e6);
+  --p-line: #e9e2d0;
+  --p-muted: #6f7390;
+  padding: 2.5rem 5rem;
+  color: var(--p-navy);
+}
+.ped-header h1 { margin: 0; font-size: 2.6rem; font-weight: 500; }
+.ped-header p { margin: .4rem 0 1.5rem; color: var(--p-muted); }
+
+.ped-panel { background: #fff; border: 1px solid var(--p-line); border-radius: 18px; padding: 1.75rem; }
+.ped-panel-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--p-line); margin-bottom: 1.5rem; flex-wrap: wrap; }
+.ped-panel-head h2 { margin: 0; font-size: 1.6rem; font-weight: 500; }
+.ped-count { font-size: .85rem; color: var(--p-muted); }
+
+/* Filtro segmentado (sustituye al botón de agregar) */
+.ped-filtro { display: inline-flex; background: var(--p-bg); border-radius: 999px; padding: 4px; }
+.ped-filtro button { border: 0; background: transparent; color: var(--p-muted); padding: .55rem 1.25rem; border-radius: 999px; cursor: pointer; font: inherit; font-size: .9rem; }
+.ped-filtro button.is-active { background: var(--p-navy); color: #fff; }
+.ped-filtro button:focus-visible, .ped-icon:focus-visible { outline: 2px solid var(--p-gold); outline-offset: 2px; }
+
+.ped-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; }
+.ped-tarjeta { border: 1px solid var(--p-line); border-radius: 14px; padding: 1.1rem 1.1rem 1rem; display: flex; flex-direction: column; gap: .5rem; }
+.ped-tarjeta-top { display: flex; justify-content: space-between; align-items: center; min-height: 1.6rem; }
+.ped-tarjeta h3 { margin: .25rem 0 0; font-size: 1.15rem; font-weight: 500; line-height: 1.3; }
+.ped-total { margin: 0; color: var(--p-gold); font-weight: 600; font-size: 1.1rem; }
+.ped-tiempo { font-size: .8rem; color: var(--p-muted); }
+.ped-acciones { display: flex; gap: .5rem; margin-top: auto; padding-top: .5rem; }
+
+.ped-icon { width: 38px; height: 38px; display: inline-grid; place-items: center; border-radius: 10px; border: 1px solid var(--p-line); background: #fff; color: var(--p-navy); cursor: pointer; }
+.ped-icon:hover:not(:disabled) { background: var(--p-bg); }
+.ped-icon:disabled { opacity: .35; cursor: not-allowed; }
+.ped-icon--ok { color: #2f7d4f; }
+.ped-icon--no { color: #b3443a; }
+
+.ped-estado { display: inline-block; font-size: .78rem; padding: .2rem .65rem; border-radius: 999px; }
+.ped-estado--pendiente { background: #f7ecc6; color: #7a5d00; }
+.ped-estado--finalizado { background: #dff1e5; color: #1f6b3f; }
+.ped-estado--rechazado { background: #f6dcd9; color: #9a3027; }
+.ped-estado--expirado { background: #ebebf0; color: #5b5f78; }
+
+.ped-error { background: #f6dcd9; color: #9a3027; padding: .7rem 1rem; border-radius: 10px; }
+.ped-vacio { color: var(--p-muted); text-align: center; padding: 2.5rem 0; }
+
+.ped-overlay { position: fixed; inset: 0; background: rgba(27, 42, 92, .45); display: grid; place-items: center; padding: 1rem; z-index: 50; }
+.ped-modal { position: relative; background: #fff; border-radius: 18px; padding: 1.75rem; width: min(480px, 100%); max-height: 90vh; overflow-y: auto; }
+.ped-modal h2 { margin: .6rem 0 .1rem; font-size: 1.5rem; font-weight: 500; }
+.ped-modal h4 { margin: 1.25rem 0 .35rem; font-size: .95rem; font-weight: 600; }
+.ped-modal p { margin: 0 0 .3rem; }
+.ped-codigo, .ped-historial { color: var(--p-muted); font-size: .88rem; }
+.ped-alerta { color: #9a3027; font-size: .88rem; font-weight: 600; }
+.ped-cerrar { position: absolute; top: 1rem; right: 1rem; border: 0; background: transparent; color: var(--p-muted); cursor: pointer; }
+.ped-items { list-style: none; margin: 0; padding: 0; }
+.ped-items li { display: flex; justify-content: space-between; gap: 1rem; padding: .45rem 0; border-bottom: 1px solid var(--p-line); }
+.ped-modal-total { display: flex; justify-content: space-between; margin-top: 1rem !important; font-size: 1.1rem; }
+.ped-modal-acciones { display: flex; gap: .5rem; justify-content: flex-end; margin-top: 1.25rem; }
+
+@media (max-width: 800px) { .ped { padding: 1.5rem 1rem; } .ped-header h1 { font-size: 2rem; } }
