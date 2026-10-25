@@ -57,7 +57,7 @@ sequelize.authenticate()
   .then(() => {
     console.log('Conexión a la BD verificada');
     iniciarJobExpiracion();
-    app.listen(PORT, () => console.log('Servidor corriendo en el puerto ', PORT));
+    app.listen(PORT, '0.0.0.0', () => console.log('Servidor corriendo en el puerto ', PORT));
   })
   .catch(err => {
     console.error('No se pudo conectar a la BD:', err.message);
