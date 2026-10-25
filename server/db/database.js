@@ -17,7 +17,7 @@ const opciones = {
   pool: { max: 10, min: 0, acquire: 30_000, idle: 10_000 },
   dialectOptions:
     DB_SSL === 'true'
-      ? { ssl: { require: true, rejectUnauthorized: process.env.DB_SSL_STRICT !== 'false' } }
+      ? { ssl: { require: true, rejectUnauthorized: process.env.DB_SSL !== 'false' } }
       : {},
 };
 
