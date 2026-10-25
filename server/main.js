@@ -51,15 +51,18 @@ app.use('/ventas', createVentasRouter({ userModel: User }))
 app.use(notFound)
 app.use(errorHandler)
 
+console.log('Arrancando... PORT =', process.env.PORT, '| NODE_ENV =', process.env.NODE_ENV)
+
 const PORT = process.env.PORT || 3000
 
+console.log('Conectando a la BD en', process.env.DB_HOST, process.env.DB_PORT)
 sequelize.authenticate()
   .then(() => {
-    console.log('Conexión a la BD verificada');
-    iniciarJobExpiracion();
-    app.listen(PORT, '0.0.0.0', () => console.log('Servidor corriendo en el puerto ', PORT));
+    console.log('Conexión a la BD verificada')
+    iniciarJobExpiracion()
+    app.listen(PORT, '0.0.0.0', () => console.log('Servidor corriendo en el puerto', PORT))
   })
   .catch(err => {
-    console.error('No se pudo conectar a la BD:', err.message);
-    process.exit(1);
-  });
+    console.error('No se pudo conectar a la BD:', err)
+    process.exit(1)
+  })

@@ -5,7 +5,7 @@ import { Sequelize } from 'sequelize';
 
 dotenv.config({ path: resolve(dirname(fileURLToPath(import.meta.url)), '../.env') });
 
-const { DATABASE_URL, DB_NAME, DB_USER, DB_PW, DB_HOST, DB_PORT, DB_SSL } = process.env;
+const { DATABASE_URL, DB_NAME, DB_USER, DB_PW, DB_HOST, DB_PORT, DB_SSL, DB_SSL_REJECT_UNAUTHORIZED } = process.env;
 
 if (!DATABASE_URL && !DB_NAME) {
   throw new Error('Falta la conexión a la BD: define DATABASE_URL o DB_NAME/DB_USER/DB_PW/DB_HOST');
