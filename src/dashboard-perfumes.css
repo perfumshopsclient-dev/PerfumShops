@@ -1,9 +1,3 @@
-/* =====================================================================
-   DASHBOARD · SELECTOR DE SECCIONES + PERFUMES
-   Pegar al final de index.css (usa sus variables: --navy, --gold, etc.)
-   ===================================================================== */
-
-/* ---------- Selector de secciones (estilo YouTube / YouTube Music) ---------- */
 .dash-top {
   display: flex; justify-content: space-between; align-items: flex-end;
   flex-wrap: wrap; gap: 20px 32px; margin-bottom: 40px;
@@ -203,3 +197,20 @@ textarea.pf-input { resize: vertical; min-height: 76px; }
   .dash-switch::before, .pf-card, .pf-overlay, .pf-modal { transition: none; animation: none; }
   .pf-card:hover { transform: none; }
 }
+
+.pf-toolbar { flex-wrap: wrap; gap: 12px; }
+.pf-search { flex: 1 1 220px; min-width: 0; }
+.pf-search__input { width: 100%; }
+
+.pf-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+.pf-card { min-width: 0; }
+.pf-card__name { overflow: hidden; text-overflow: ellipsis; }
+.pf-card__foot { flex-wrap: wrap; gap: 6px; }
+
+@media (max-width: 1200px) { .pf-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 900px)  { .pf-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; } }
+@media (max-width: 380px)  { .pf-grid { grid-template-columns: 1fr; } }

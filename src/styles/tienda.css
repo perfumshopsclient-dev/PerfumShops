@@ -143,3 +143,37 @@
   .ess-card:hover { transform: none; }
   .ess-card__act, .ord__ok { animation: none; }
 }
+
+.ess__bar { flex-wrap: wrap; row-gap: 12px; margin-bottom: 28px; }
+.ess__search { flex: 1 1 100%; max-width: none; min-width: 0; }
+.ess__filtros-btn { flex: none; padding: 10px 22px; }
+
+/* El panel lateral no se sale de la pantalla si hay muchos acordes */
+.ess__aside { align-content: start; max-height: calc(100vh - 120px); overflow-y: auto; padding-right: 6px; }
+
+/* Cuadrícula de 4 en 4 (escritorio) */
+.ess__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.ess-card h3 { font-size: 21px; }
+
+/* Pantallas medianas: filtros más angostos y 3 columnas */
+@media (max-width: 1100px) {
+  .ess__body { grid-template-columns: 200px 1fr; gap: 32px; }
+  .ess__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+}
+
+/* Tablet / móvil: filtros colapsados bajo la búsqueda, 3 columnas */
+@media (max-width: 800px) {
+  .ess__body { grid-template-columns: 1fr; gap: 24px; }
+  .ess__aside { max-height: none; overflow: visible; padding: 4px 16px; background: #fff; border-radius: 12px; }
+  .ess__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .ess-card h3 { font-size: 19px; }
+}
+
+/* Móvil: 2 columnas */
+@media (max-width: 600px) {
+  .ess__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .ess-card { gap: 10px; }
+  .ess-card h3 { font-size: 17px; margin-top: 10px; }
+  .ess-card__meta { font-size: 12px; }
+  .ess-card__precio { font-size: 13px; }
+}
