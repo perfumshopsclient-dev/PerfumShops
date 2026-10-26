@@ -67,10 +67,6 @@ function OpcionesCheck({ opciones, marcadas, onToggle, etiqueta = (v) => v }) {
 export default function Esencias() {
   const [params, setParams] = useSearchParams();
 
-  // Parámetros que manda el index:
-  //   ?filtro=mas-vendidas           -> "Ver todas" de las más vendidas
-  //   ?momento=día | noche           -> "Ver todas" de la sección por momento del día
-  //   ?esencia=ID                    -> click en una tarjeta de la portada (ID es un UUID, o sea texto)
   const claveFiltro = params.get("filtro");
   const preset = FILTROS_INDEX[claveFiltro] ?? null;
   const esenciaParam = params.get("esencia") || null;
