@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import CartMenu from "./CartMenu";
 import { useAuth } from "../utils/AuthContext";
+import { UserPlus } from 'lucide-react'
 
 const IconUser = () => (
   <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -25,7 +26,7 @@ export function Header({ scrolled }) {
         {usuario ? (
           <Link to="/perfil" className="nav__icon" aria-label="Mi perfil"><IconUser /></Link>
         ) : (
-          <Link to="/login" className="nav__login">Inicia sesión</Link>
+          <Link to="/login" className="nav__login"><UserPlus /></Link>
         )}
       </div>
     </header>
