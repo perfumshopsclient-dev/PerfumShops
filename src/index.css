@@ -424,7 +424,7 @@ img, video { max-width: 100%; }
 .nav__links { display: flex; gap: 36px; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; }
 .nav__links a:hover { color: var(--gold-soft); }
 .nav__user { display: flex; gap: 14px; align-items: center; justify-content: flex-end; }
-.nav__icon { display: grid; place-items: center; min-width: 44px; min-height: 44px; }
+.nav__icon { display: grid; place-items: center; min-width: 44px; min-height: 44px; margin: auto 10px; }
 .nav__login {
   display: inline-flex; align-items: center; justify-content: center;
   padding: 10px 20px; border: 1px solid var(--gold); border-radius: 999px;
