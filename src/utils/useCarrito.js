@@ -1,13 +1,9 @@
 import { useCallback, useMemo, useSyncExternalStore } from "react";
 
-// Debe coincidir con MAX_UNIDADES_POR_PERFUME del backend (pedidos.service.js).
-// El backend es quien manda: esto solo evita errores evidentes en pantalla.
 export const MAX_UNIDADES = 5;
 
 const CLAVE = "perfumshops_carrito";
 
-// Cada línea: { id, nombre, imagen, ml, precio_unitario, cantidad }
-// El precio guardado es solo para mostrar: el servidor lo recalcula al crear el pedido.
 const leer = () => {
   try {
     const datos = JSON.parse(localStorage.getItem(CLAVE));

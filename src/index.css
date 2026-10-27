@@ -15,7 +15,7 @@
 
 /* ============ LOGIN ============ */
 .form-div {
-  position: relative; overflow: hidden; min-height: 100vh;
+  position: relative; overflow: hidden; min-height: 100dvh;
   display: flex; justify-content: center; align-items: center; padding: 24px;
   background: linear-gradient(120deg, var(--navy-deep) 10%, var(--navy) 65%, #2a3a78 100%);
   color: #fff;
@@ -91,14 +91,20 @@
 .form-error { color: #ff9b9b; font-size: 13px; margin: -6px 0 14px; text-align: center; }
 
 .form-btn {
-  width: 100%; padding: 14px; border: 1px solid var(--gold); border-radius: 10px;
-  background: var(--gold); color: var(--navy-deep); font: inherit; font-weight: 500;
-  letter-spacing: .14em; text-transform: uppercase; font-size: 13px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-sizing: border-box; width: 100%; min-height: 48px;
+  padding: 14px 20px; border: 1px solid var(--gold); border-radius: 10px;
+  background: var(--gold); color: var(--navy-deep);
+  font: inherit; font-weight: 500; font-size: 13px; line-height: 1.2;
+  letter-spacing: .14em; text-transform: uppercase;
+  text-align: center; text-decoration: none; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   transition: background .25s, color .25s, transform .15s;
 }
 .form-btn:hover { background: var(--gold-soft); color: #343434; }
 .form-btn:active { transform: scale(.98); }
 .form-btn:disabled { opacity: .55; cursor: progress; }
+.form-btn:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 3px; }
 
 .login-alt { text-align: center; font-size: 14px; color: #c9cde6; margin-top: 22px; }
 .login-alt a { color: var(--gold-soft); border-bottom: 1px solid transparent; transition: border-color .2s; }
@@ -110,10 +116,15 @@
 .perfil-datos dt { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #b9bedb; }
 .perfil-datos dd { margin: 0; font-size: 15px; text-align: right; overflow-wrap: anywhere; }
 
-@media (max-width: 480px) { .login-card { padding: 28px 22px 30px; } }
-@media (prefers-reduced-motion: reduce) {
-  .login-logo { animation: none; }
-  .login-card, .login-fields, .login-logo img { transition: none; }
+@media (max-width: 480px) {
+  .login-card { padding: 28px 22px 30px; }
+  .login-title { font-size: 30px; }
+  .login-sub { margin-bottom: 22px; }
+  .form-btn { font-size: 12px; letter-spacing: .1em; padding: 14px 12px; }
+}
+@media (max-width: 340px) {
+  .login-card { padding: 24px 16px 26px; }
+  .form-btn { letter-spacing: .06em; }
 }
 
 /* ============ DASHBOARD ============ */
@@ -412,7 +423,16 @@ img, video { max-width: 100%; }
 .nav__logo img { height: 46px; display: block; }
 .nav__links { display: flex; gap: 36px; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; }
 .nav__links a:hover { color: var(--gold-soft); }
-.nav__user { display: flex; gap: 18px; justify-content: flex-end; }
+.nav__user { display: flex; gap: 14px; align-items: center; justify-content: flex-end; }
+.nav__icon { display: grid; place-items: center; min-width: 44px; min-height: 44px; }
+.nav__login {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 10px 20px; border: 1px solid var(--gold); border-radius: 999px;
+  color: var(--gold-soft); font-size: 12px; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase; white-space: nowrap;
+  transition: background .25s, color .25s;
+}
+.nav__login:hover { background: var(--gold); color: var(--navy-deep); }
 
 /* HERO */
 .hero {
@@ -509,6 +529,8 @@ img, video { max-width: 100%; }
   .nav { padding: 12px 18px; }
   .nav__links { gap: 16px; font-size: 11px; }
   .nav__logo img { height: 38px; }
+  .nav__user { gap: 8px; }
+  .nav__login { padding: 8px 12px; font-size: 10px; letter-spacing: .06em; }
   .hero { padding: 110px 7vw 64px; text-align: center; justify-content: center; }
   .hero__text { max-width: 560px; }
   .hero__sub { margin-inline: auto; }
@@ -525,6 +547,10 @@ img, video { max-width: 100%; }
 @media (max-width: 420px) {
   .btn { width: 100%; text-align: center; padding: 14px 20px; }
   .eyebrow { letter-spacing: .22em; }
+  .nav { padding: 10px 12px; }
+  .nav__links { gap: 10px; font-size: 10px; letter-spacing: .06em; }
+  .nav__logo img { height: 32px; }
+  .nav__login { padding: 7px 10px; font-size: 9.5px; }
 }
 
 /* Animación de entrada: fade + deslizamiento rápido */

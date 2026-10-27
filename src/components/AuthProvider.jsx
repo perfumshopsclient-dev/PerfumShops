@@ -6,10 +6,15 @@ import {
   registrarUsuario,
   logeoUsuario,
 } from "../utils/userInformation";
+import { useCarrito } from "../utils/useCarrito";
 
 export default function AuthProvider({ children }) {
   const [usuario, setUsuario] = useState(null);
   const [cargando, setCargando] = useState(true);
+
+  const { vaciar } = useCarrito()
+
+  const expirarSesion = useCallback(() => setUsuario(null), []);
 
   useEffect(() => {
     let vigente = true;
@@ -34,15 +39,16 @@ export default function AuthProvider({ children }) {
 
   const logout = useCallback(async () => {
     try {
-      await cerrarSesion(); // el servidor borra la cookie
+      await cerrarSesion();
     } finally {
+      vaciar()
       setUsuario(null);
     }
-  }, []);
+  }, [vaciar]);
 
   const valor = useMemo(
-    () => ({ usuario, cargando, login, register, logout }),
-    [usuario, cargando, login, register, logout],
+    () => ({ usuario, cargando, login, register, logout, expirarSesion }),
+    [usuario, cargando, login, register, logout, expirarSesion],
   );
 
   return <ContextoAuth.Provider value={valor}>{children}</ContextoAuth.Provider>;

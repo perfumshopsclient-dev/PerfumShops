@@ -1,14 +1,20 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { Header } from "../components/Header";
 import { MAX_UNIDADES, useCarrito } from "../utils/useCarrito";
 import { fmt, pluralPerfumes } from "../data/esencias";
 import { crearPedido } from "../utils/pedidosInformation";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../utils/AuthContext";
 import "../styles/tienda.css";
 
 export default function Carrito() {
   const { items, vaciar, total, cantidadTotal, cambiarCantidad, quitar } = useCarrito();
-  
+
+  const { usuario, cargando, expirarSesion } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const irALogin = () => navigate("/login", { state: { from: location.pathname } });
   
   const totalMl = items.reduce((suma, item) => suma + (Number(item.ml) || 0) * item.cantidad, 0);
   const [enviando, setEnviando] = useState(false);
@@ -16,6 +22,9 @@ export default function Carrito() {
   const [pedido, setPedido] = useState(null);
 
   const confirmar = async () => {
+    if (cargando) return;            // la sesión aún se está comprobando
+    if (!usuario) return irALogin(); // sin sesión: al login y vuelve aquí
+
     setEnviando(true);
     setError("");
     try {
@@ -23,7 +32,11 @@ export default function Carrito() {
       setPedido(data);
       vaciar();
     } catch (e) {
-      // 401: no hay sesión → llévalo al login; 409/429/400: el mensaje ya viene redactado
+      // La cookie pudo expirar (dura 1 hora): también mandamos al login
+      if (e.response?.status === 401) {
+        expirarSesion();
+        return irALogin();
+      }
       setError(e.response?.data?.message ?? "No pudimos crear tu pedido");
     } finally {
       setEnviando(false);
@@ -103,7 +116,9 @@ export default function Carrito() {
                   <div className="car__total"><dt>Total</dt><dd>{fmt(total)}</dd></div>
                 </dl>
                 {error && <p role="alert">{error}</p>}
-                <button type="button" className="btn btn--sm" onClick={confirmar} disabled={enviando}>{enviando ? "Enviando…" : "Enviar orden por WhatsApp"}</button>
+                <button type="button" className="btn btn--sm" onClick={confirmar} disabled={enviando || cargando}>
+                  {enviando ? "Enviando…" : usuario ? "Enviar orden por WhatsApp" : "Inicia sesión para enviar"}
+                </button>
                 <Link to="/esencias" className="btn btn--sm btn--ghost">Seguir viendo esencias</Link>
                 <button type="button" className="ess__limpiar" onClick={vaciar}>Vaciar carrito</button>
               </aside>

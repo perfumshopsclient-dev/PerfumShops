@@ -10,6 +10,7 @@ const IconUser = () => (
 
 export function Header({ scrolled }) {
   const { usuario } = useAuth();
+  const mostrarCarrito = !usuario || usuario.rol === "user"; // visitantes también pueden armar su carrito
 
   return (
     <header className={`nav ${scrolled ? "nav--solid" : ""}`}>
@@ -17,15 +18,15 @@ export function Header({ scrolled }) {
       <nav className="nav__links">
         <Link to="/">Inicio</Link>
         <Link to="/esencias">Esencias</Link>
-        { /** Descomentar cuando se vaya a lanzar a producción {usuario?.rol === "user" && <Link to="/esencias">Esencias</Link>} */ }
         {usuario?.rol === "admin" && <Link to="/dashboard">Dashboard</Link>}
       </nav>
       <div className="nav__user">
-        {usuario?.rol === 'user' && <CartMenu />}
-        <Link to={usuario ? "/perfil" : "/login"}
-              aria-label={usuario ? "Mi perfil" : "Iniciar sesión"}>{ usuario ? <IconUser /> : <Link to="/login" className="pf-btn">
-            Inicia sesión
-          </Link> }</Link>
+        {mostrarCarrito && <CartMenu />}
+        {usuario ? (
+          <Link to="/perfil" className="nav__icon" aria-label="Mi perfil"><IconUser /></Link>
+        ) : (
+          <Link to="/login" className="nav__login">Inicia sesión</Link>
+        )}
       </div>
     </header>
   );

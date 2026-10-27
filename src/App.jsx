@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import AuthProvider from "./components/AuthProvider";
 import { useAuth } from "./utils/AuthContext";
 import Index from "./pages/Index";
@@ -25,8 +25,9 @@ function Protegida({ children, soloAdmin = false }) {
 
 function SoloVisitantes({ children }) {
   const { usuario, cargando } = useAuth();
+  const location = useLocation();
   if (cargando) return null;
-  if (usuario) return <Navigate to="/" replace />;
+  if (usuario) return <Navigate to={location.state?.from ?? "/"} replace />;
   return children;
 }
 
@@ -37,9 +38,9 @@ export default function App() {
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<SoloVisitantes><Login /></SoloVisitantes>} />
           <Route path="/register" element={<SoloVisitantes><Register /></SoloVisitantes>} />
-          <Route path="/esencias" element={<Protegida><Esencias /></Protegida>} />
-          <Route path="/ordenar/:id" element={<Protegida><Ordenar /></Protegida>} />
-          <Route path="/carrito" element={<Protegida><Carrito /></Protegida>} />
+          <Route path="/esencias" element={<Esencias />} />
+          <Route path="/ordenar/:id" element={<Ordenar />} />
+          <Route path="/carrito" element={<Carrito />} />
           <Route path="/perfil" element={<Protegida><Perfil /></Protegida>} />
           <Route path="/dashboard" element={<Protegida soloAdmin><DashboardLayout /></Protegida>}>
             <Route index element={<Resumen />} />

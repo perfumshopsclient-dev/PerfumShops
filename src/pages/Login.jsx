@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { z } from "zod";
 import { useAuth } from "../utils/AuthContext";
 
@@ -34,6 +34,8 @@ export default function Login() {
   const [enviando, setEnviando] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const destino = location.state?.from ?? "/";
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -54,7 +56,7 @@ export default function Login() {
     setEnviando(true);
     try {
       await login(result.data);
-      navigate("/", { replace: true });
+      navigate(destino, { replace: true });
     } catch (err) {
       if (err.status === 403 && err.response?.data?.code === "EMAIL_NOT_VERIFIED") {
         navigate("/revisa-tu-correo", { state: { email: result.data.email } });
@@ -108,7 +110,7 @@ export default function Login() {
             </button>
 
             <p className="login-alt">
-              ¿No tienes cuenta? <Link to="/register">Regístrate</Link>
+              ¿No tienes cuenta? <Link to="/register" state={location.state}>Regístrate</Link>
             </p>
           </form>
         </div>
