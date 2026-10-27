@@ -4,7 +4,7 @@ import { useAuth } from "../utils/AuthContext";
 
 const IconUser = () => (
   <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.5">
-    <circle cx="12" cy="8" r="2" /><path d="M4 21c1-4 4-6 8-6s7 2 8 6" strokeLinecap="round" />
+    <circle cx="12" cy="8" r="4" /><path d="M4 21c1-4 4-6 8-6s7 2 8 6" strokeLinecap="round" />
   </svg>
 );
 

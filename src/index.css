@@ -424,7 +424,7 @@ img, video { max-width: 100%; }
 .nav__links { display: flex; gap: 36px; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; }
 .nav__links a:hover { color: var(--gold-soft); }
 .nav__user { display: flex; gap: 14px; align-items: center; justify-content: flex-end; }
-.nav__icon { display: grid; place-items: center; min-width: 44px; min-height: 44px; margin: auto 10px; }
+.nav__icon { display: grid; place-items: center; min-width: 44px; min-height: 44px; }
 .nav__login {
   display: inline-flex; align-items: center; justify-content: center;
   padding: 10px 20px; border: 1px solid var(--gold); border-radius: 999px;
@@ -797,3 +797,46 @@ textarea.pf-input { resize: vertical; min-height: 76px; }
 @media (max-width: 1200px) { .pf-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 900px)  { .pf-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; } }
 @media (max-width: 380px)  { .pf-grid { grid-template-columns: 1fr; } }
+
+@media (max-width: 700px) {
+  .nav {
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "logo user" "links links";
+    align-items: center;
+    row-gap: 6px;
+    padding: 10px 16px 8px;
+  }
+  .nav__logo { grid-area: logo; justify-self: start; }
+  .nav__logo img { height: 36px; }
+  .nav__user { grid-area: user; gap: 12px; }
+  .nav__login { padding: 8px 14px; font-size: 11px; letter-spacing: .08em; }
+
+  .nav__links {
+    grid-area: links;
+    justify-content: center;
+    gap: 6px;
+    font-size: 12px;
+    letter-spacing: .1em;
+    padding-top: 6px;
+    border-top: 1px solid rgba(255, 255, 255, .14);
+  }
+  .nav__links a { padding: 8px 14px; } /* área táctil más cómoda */
+
+  /* El panel del carrito ocupa el ancho de pantalla y cuelga del header */
+  .cart { position: static; }
+  .cart__panel {
+    position: absolute; left: 16px; right: 16px; top: 100%;
+    width: auto; margin-top: 6px;
+  }
+
+  /* El header ahora es más alto: damos más espacio al contenido de abajo */
+  .hero { padding-top: 140px; }
+  .dashboard-main { padding-top: 140px; }
+  .ess__aside { top: 120px; }
+}
+
+@media (max-width: 360px) {
+  .nav { padding: 8px 12px 6px; }
+  .nav__login { padding: 7px 10px; font-size: 10px; }
+  .nav__links a { padding: 8px 10px; font-size: 11px; }
+}
